@@ -1,7 +1,8 @@
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { integer, text } from "drizzle-orm/sqlite-core";
+import * as s from 'drizzle-orm/sqlite-core';
 import { nanoid } from "nanoid";
 
-export const tipoMembro = sqliteTable(
+export const tipoMembro = s.sqliteTable(
   "tipo_membro",
   {
     id: text("id")
@@ -20,6 +21,4 @@ export const tipoMembro = sqliteTable(
       mode: "timestamp_ms",
     }).$defaultFn(() => new Date()),
     updated_by: text("updated_by"),
-  },
-  () => ({})
-);
+  });
