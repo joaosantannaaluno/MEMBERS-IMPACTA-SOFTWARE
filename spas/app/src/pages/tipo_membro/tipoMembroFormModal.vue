@@ -1,21 +1,23 @@
 <template>
   <q-dialog ref="dialogRef" @hide="onDialogHide">
     <q-card class="q-dialog-plugin">
-      <q-input
-        v-model="dados.descricao"
-        :rules="[(val: string) => !!val || 'Campo obrigatório']"
-        label="Descricao"
-      >
-        <template v-slot:append>
-          <q-icon name="mdi-asterisk" color="negative" size="xs" />
-        </template>
-      </q-input>
-      <q-input v-model="dados.observacao" label="Observaçao" />
-      <q-card-actions align="right">
-        <q-btn color="primary" label="Enviar" @click="submit" />
-        <q-btn color="primary" label="Cancelar" @click="onDialogCancel" />
-        <q-btn v-if="dados.id" color="primary" label="Excluir" @click="apagar" />
-      </q-card-actions>
+      <q-form @submit="submit">
+        <q-input
+          v-model="dados.descricao"
+          :rules="[(val) => !!val || 'Campo obrigatório']"
+          label="Descricao"
+        >
+          <template v-slot:append>
+            <q-icon name="mdi-asterisk" color="negative" size="xs" />
+          </template>
+        </q-input>
+        <q-input v-model="dados.observacao" label="Observaçao" />
+        <q-card-actions align="right">
+          <q-btn color="primary" label="Enviar" type="submit" />
+          <q-btn color="primary" label="Cancelar" @click="onDialogCancel" />
+          <q-btn v-if="dados.id" color="primary" label="Excluir" @click="apagar" />
+        </q-card-actions>
+      </q-form>
     </q-card>
   </q-dialog>
 </template>
