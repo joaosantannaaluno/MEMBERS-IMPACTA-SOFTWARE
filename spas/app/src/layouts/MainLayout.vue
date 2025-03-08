@@ -4,9 +4,9 @@
       <q-toolbar>
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
 
-        <q-toolbar-title> Quasar App </q-toolbar-title>
+        <q-toolbar-title> Membros Impacta </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>App v{{ version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import EssentialLink, { type EssentialLinkProps } from 'components/EssentialLink.vue'
-
+import { version } from '../../package.json'
 const linksList: EssentialLinkProps[] = [
   {
     title: 'Tipo de membros',

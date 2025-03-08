@@ -1,5 +1,6 @@
 import type { QTableColumn } from 'quasar'
 import type { CrudsAPIOutputs } from '../../../../../apis/cruds/src'
+import { formatDateTime } from 'src/utils/date-time'
 
 const columns: QTableColumn[] = [
   {
@@ -32,6 +33,7 @@ const columns: QTableColumn[] = [
     label: 'Criado Em',
     align: 'center',
     field: (row: CrudsAPIOutputs['tipo_membros']['list']['data'][0]) => row.created_at,
+    format: (row: CrudsAPIOutputs['tipo_membros']['list']['data'][0]['created_at']) => row ? formatDateTime(row) as string : '',
     sortable: true,
   },
   {
