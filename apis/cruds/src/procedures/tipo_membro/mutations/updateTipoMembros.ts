@@ -9,7 +9,7 @@ export default procedure
       id: z.string().nanoid(),
       status: z.enum(["active", "inactive"]),
       descricao: z.string(),
-      observacao: z.string(),
+      observacao: z.string().nullable(),
     })
   )
   .mutation(async (opts) => {
@@ -29,6 +29,6 @@ export default procedure
       .returning({
         id: tipoMembro.id,
       });
-      
+
     return resultado;
   });

@@ -7,6 +7,7 @@ const columns: QTableColumn[] = [
     label: 'Status',
     align: 'center',
     field: (row: CrudsAPIOutputs['tipo_membros']['list']['data'][0]) => row.status,
+    format: (row: CrudsAPIOutputs['tipo_membros']['list']['data'][0]['status']) => row === 'active' ? 'Ativo' : 'Inativo',
     sortable: true,
     style: () => {
       return 'width: 150px'

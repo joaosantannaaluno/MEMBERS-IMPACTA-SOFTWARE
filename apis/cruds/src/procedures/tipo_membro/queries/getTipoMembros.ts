@@ -12,10 +12,11 @@ export default procedure
   .query(async (opts) => {
     const { id } = opts.input;
 
-    const resultado = await dbClient
+    const [resultado] = await dbClient
       .select()
       .from(tipoMembro)
       .where(eq(tipoMembro.id, id))
       .execute();
+
     return resultado;
   });

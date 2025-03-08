@@ -8,7 +8,7 @@ export default procedure
     z.object({
       status: z.enum(["active", "inactive"]),
       descricao: z.string(),
-      observacao: z.string(),
+      observacao: z.string().nullable(),
     })
   )
   .mutation(async (opts) => {
