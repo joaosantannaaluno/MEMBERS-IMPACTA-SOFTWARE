@@ -33,7 +33,11 @@ const linksList: EssentialLinkProps[] = [
     title: 'Tipo de membros',
     caption: 'Tipo de membros',
     icon: 'mdi-account-group',
-    link: 'http://localhost:9000/tipo_membro',
+  },
+  {
+    title: 'Membros',
+    caption: 'Membros',
+    icon: 'mdi-android',
   },
 ]
 
