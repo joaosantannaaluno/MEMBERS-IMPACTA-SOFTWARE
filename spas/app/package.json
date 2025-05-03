@@ -15,10 +15,12 @@
     "postinstall": "quasar prepare"
   },
   "dependencies": {
+    "@manager-members/cruds": "workspace:^",
     "@quasar/extras": "^1.16.4",
     "@trpc/client": "^10.45.2",
     "@trpc/server": "^10.45.2",
     "date-fns": "^4.1.0",
+    "pdfjs-dist": "^5.2.133",
     "pinia": "^3.0.1",
     "quasar": "^2.16.0",
     "vue": "^3.4.18",

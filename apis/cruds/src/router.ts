@@ -10,6 +10,11 @@ import getMembros from "./procedures/membro/queries/getMembros";
 import createMembros from "./procedures/membro/mutations/createMembros";
 import updateMembros from "./procedures/membro/mutations/updateMembros";
 import deleteMembros from "./procedures/membro/mutations/deleteMembros";
+import createArquivos from "./procedures/arquivos/createArquivos";
+import getSignedUrl from "./procedures/arquivos/getSignedUrl";
+import getArquivo from "./procedures/arquivos/queries/getArquivo";
+import confirmArquivoUpload from "./procedures/arquivos/confirmArquivoUpload";
+import getPreset from "./procedures/presets/queries/getPreset";
 
 export const appRouter = router({
   tipo_membros: router({
@@ -28,6 +33,18 @@ export const appRouter = router({
     create: createMembros,
     update: updateMembros,
     delete: deleteMembros,
+  }),
+  arquivos: router({
+    getPutUrl: createArquivos,
+    getShowUrl: getSignedUrl,
+
+    // create: createArquivos,
+    get: getArquivo,
+
+    confirmFileUpload: confirmArquivoUpload,
+  }),
+  preset: router({
+    get: getPreset,
   }),
 });
 

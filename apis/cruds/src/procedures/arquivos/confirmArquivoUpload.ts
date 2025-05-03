@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { procedure } from "../../../trpc";
-import { dbClient, membro } from "@manager-members/main-db/src";
 import { eq } from "drizzle-orm";
+import { procedure } from "../../trpc.js";
+import { arquivos, dbClient } from "@manager-members/main-db";
 
 export default procedure
   .input(
@@ -13,11 +13,13 @@ export default procedure
     const { id } = opts.input;
 
     const [resultado] = await dbClient
-      .delete(membro)
-      .where(eq(membro.id, id))
+      .update(arquivos)
+      .set({ status: "completo" })
+      .where(eq(arquivos.id, id))
       .returning({
-        id: membro.id,
-      });
+        id: arquivos.id,
+      })
+      .execute();
 
     return resultado;
   });

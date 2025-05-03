@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { procedure } from "../../../trpc";
 import { eq } from "drizzle-orm";
-import { dbClient, tipoMembro } from "../../../../../../packages/main-db";
+import { dbClient, tipoMembro } from "@manager-members/main-db/src";
 
 export default procedure
   .input(

@@ -5,23 +5,16 @@
     "moduleResolution": "node",
     "outDir": "dist",
     "rootDir": "src",
+    "declaration": true,
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "allowJs": true,
     "checkJs": false,
-    "lib": [
-      "es6",
-      "dom"
-    ],
-    "skipDefaultLibCheck": true,
-    "declaration": false,
     "sourceMap": true,
-    "outFile": null,
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
@@ -30,7 +23,6 @@
   ],
   "exclude": [
     "node_modules",
-    "dist",
-    "**/*.d.ts"
+    "dist"
   ]
 }

@@ -2,6 +2,24 @@
   <q-dialog ref="dialogRef" @hide="onDialogHide">
     <q-card class="q-dialog-plugin">
       <q-form @submit="submit">
+        <q-avatar class="q-mb-sm" v-if="urlFilePic" rounded size="128px">
+          <img v-if="urlFilePic" :src="urlFilePic" />
+        </q-avatar>
+        <magic-uploader
+          v-model="filePic"
+          v-model:existing-file="dados.id_foto"
+          columnSize="col-12"
+          :styleConfig="{}"
+          label="Foto do Membro"
+          :criando="!dados.id_foto"
+          :readonly="false"
+          :nameFile="`_${dados.nome}`"
+          :maxWidthImg="120"
+          @file-rejected="() => (urlFilePic = '')"
+          @file-removed="() => (urlFilePic = '')"
+          @file-added="(file) => onFileAdded(file, 'id_foto')"
+        />
+
         <q-input v-model="dados.nome" :rules="[(val) => !!val || 'Campo obrigatório']" label="Nome">
           <template v-slot:append>
             <q-icon name="mdi-asterisk" color="negative" size="xs" />
@@ -47,6 +65,7 @@ import { useDialogPluginComponent, useQuasar } from 'quasar'
 import { onMounted, ref } from 'vue'
 import type { CrudsAPIOutputs, CrudsTRPCErrors } from '../../../../../apis/cruds/src'
 import useCrudsAPIClient from 'src/composables/useCrudsApiClient'
+import MagicUploader, { DownloadFile } from 'src/components/crud/MagicUploader.vue'
 
 defineEmits([...useDialogPluginComponent.emits])
 
@@ -73,6 +92,8 @@ const dados = ref<NonNullable<CrudsAPIOutputs['membros']['get']>>({
 })
 
 const optionsTiposMembro = ref()
+const urlFilePic = ref<string>('')
+const filePic = ref<File>()
 
 const loadOptionsTiposMembro = async () => {
   const resultado = await crudsApiClient.lists.tipos_membro.query()
@@ -228,6 +249,11 @@ const apagar = () => {
       $q.loading.hide()
     }
   })
+}
+
+function onFileAdded(file: DownloadFile, field: 'id_foto') {
+  dados.value[field] = file.id
+  if (field === 'id_foto') urlFilePic.value = file.downloadLink
 }
 
 const submit = async () => {

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { procedure } from "../../../trpc";
-import { dbClient, membro } from "../../../../../../packages/main-db";
+import { dbClient, membro } from "@manager-members/main-db/src";
 import { eq } from "drizzle-orm";
 
 export default procedure
