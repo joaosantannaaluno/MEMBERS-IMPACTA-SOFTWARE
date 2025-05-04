@@ -1,8 +1,7 @@
 import { z } from "zod";
 import { procedure } from "../../../trpc";
-import { dbClient } from "../../../../../../packages/main-db/src/db";
-import { tipoMembro } from "../../../../../../packages/main-db/src/schema";
 import { asc } from "drizzle-orm";
+import { dbClient, tipoMembro } from "@manager-members/main-db";
 
 export default procedure.query(async (opts) => {
   //   const { id } = opts.input;

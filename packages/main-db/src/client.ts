@@ -14,19 +14,17 @@ export const createLibSQLClient = ({
   databaseAuthToken: string | undefined;
   http?: boolean | undefined;
 }) => {
-  if (clients[`${databaseAuthToken}@${databaseUrl}`]) {
-    return clients[`${databaseAuthToken}@${databaseUrl}`];
+  const key = `${databaseAuthToken}@${databaseUrl}`;
+  if (clients[key]) {
+    return clients[key];
   }
-  if (http) {
-    clients[`${databaseAuthToken}@${databaseUrl}`] = createClientHttp({
-      url: databaseUrl,
-      authToken: databaseAuthToken,
-    });
-  } else {
-    clients[`${databaseAuthToken}@${databaseUrl}`] = createClient({
-      url: databaseUrl,
-      authToken: databaseAuthToken,
-    });
-  }
-  return clients[`${databaseAuthToken}@${databaseUrl}`];
+
+  const config = {
+    url: databaseUrl,
+    ...(databaseAuthToken ? { authToken: databaseAuthToken } : {}),
+  };
+
+  clients[key] = http ? createClientHttp(config) : createClient(config);
+
+  return clients[key];
 };

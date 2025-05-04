@@ -1,11 +1,7 @@
 import { z } from "zod";
 import { procedure } from "../../../trpc";
-import { dbClient } from "../../../../../../packages/main-db/src/db";
-import {
-  membro,
-  tipoMembro,
-} from "../../../../../../packages/main-db/src/schema";
 import { asc, eq } from "drizzle-orm";
+import { dbClient, membro, tipoMembro } from "@manager-members/main-db";
 
 export default procedure.query(async (opts) => {
   const resultado = await dbClient

@@ -65,7 +65,8 @@ import { useDialogPluginComponent, useQuasar } from 'quasar'
 import { onMounted, ref } from 'vue'
 import type { CrudsAPIOutputs, CrudsTRPCErrors } from '../../../../../apis/cruds/src'
 import useCrudsAPIClient from 'src/composables/useCrudsApiClient'
-import MagicUploader, { DownloadFile } from 'src/components/crud/MagicUploader.vue'
+import MagicUploader from 'src/components/crud/MagicUploader.vue'
+import type { DownloadFile } from 'src/components/crud/MagicUploader.vue'
 
 defineEmits([...useDialogPluginComponent.emits])
 

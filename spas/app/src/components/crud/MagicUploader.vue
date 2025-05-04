@@ -68,7 +68,7 @@
 <script setup lang="ts">
 import { Dialog, exportFile, QFile, useQuasar } from 'quasar'
 import { onBeforeMount, ref, computed, watch, onMounted } from 'vue'
-import { CrudsAPIOutputs } from '@manager-members/cruds'
+import type { CrudsAPIOutputs } from '@manager-members/cruds'
 import * as pdfjsLib from 'pdfjs-dist'
 import useCrudsAPIClient from 'src/composables/useCrudsApiClient'
 
@@ -78,7 +78,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf-worker.js'
 const $q = useQuasar()
 const emit = defineEmits(['file-added', 'file-removed', 'file-rejected', 'file-error'])
 
-const files = defineModel<File>()
+const files = defineModel<File | undefined>()
 const existingFiles = defineModel<string | undefined | null>('existingFile')
 
 type MimeType =
@@ -173,7 +173,9 @@ const validWidthImg = (file: File, maxWidth: number): Promise<void> => {
         // const height = img.height;
 
         if (width > maxWidth) {
-          reject(`A largura da imagem (${width}px) é maior que o limite de ${maxWidth}px.`)
+          reject(
+            new Error(`A largura da imagem (${width}px) é maior que o limite de ${maxWidth}px.`),
+          )
         } else {
           resolve()
         }
@@ -183,7 +185,7 @@ const validWidthImg = (file: File, maxWidth: number): Promise<void> => {
 
       img.src = objectURL
     } else {
-      reject('Nenhum arquivo foi fornecido.')
+      reject(new Error('Nenhum arquivo foi fornecido.'))
     }
   })
 }
@@ -222,9 +224,7 @@ const getFileValue = async (file: File) => {
         throw new Error(message)
       })
 
-    let response
-
-    response = await fetch(dbFile.url as URL | RequestInfo, {
+    const response = await fetch(dbFile.url as URL | RequestInfo, {
       method: 'PUT',
       headers: {
         'Content-Type': file.type,

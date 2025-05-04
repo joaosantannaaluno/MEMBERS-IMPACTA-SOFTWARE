@@ -1,7 +1,6 @@
-import { tipoMembro } from "./../../../../../../packages/main-db/src/schema";
-import { dbClient } from "./../../../../../../packages/main-db/src/db";
 import { z } from "zod";
 import { procedure } from "../../../trpc";
+import { dbClient, tipoMembro } from "@manager-members/main-db";
 
 export default procedure
   .input(
