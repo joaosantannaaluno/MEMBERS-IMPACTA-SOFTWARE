@@ -2,6 +2,7 @@ import { z } from "zod";
 import { procedure } from "../../../trpc";
 import { eq } from "drizzle-orm";
 import { dbClient, membro } from "@manager-members/main-db/src";
+import { gerarUrlAssinada } from "@manager-members/s3";
 
 export default procedure
   .input(
@@ -18,5 +19,17 @@ export default procedure
       .where(eq(membro.id, id))
       .execute();
 
-    return resultado;
+    let pic = ""
+
+    if (resultado?.id_foto)
+      pic = await gerarUrlAssinada(`${resultado?.id_foto}.png` || "", 3600)
+
+    const resultadoNormalizado = {
+      ...resultado,
+      foto: pic,
+    }
+
+    console.log('resultadoNormalizado', resultadoNormalizado)
+
+    return resultadoNormalizado
   });

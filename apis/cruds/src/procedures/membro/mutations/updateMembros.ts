@@ -8,19 +8,21 @@ export default procedure
     z.object({
       id: z.string().nanoid(),
       idTipoMembro: z.string().nanoid(),
+      idFoto: z.string().nanoid().nullable(),
       nome: z.string().max(255),
       status: z.enum(["active", "inactive"]),
       observacao: z.string().nullable(),
     })
   )
   .mutation(async (opts) => {
-    const { id, nome, idTipoMembro, observacao, status } = opts.input;
+    const { id, nome, idTipoMembro, observacao, status, idFoto } = opts.input;
 
     const [resultado] = await dbClient
       .update(membro)
       .set({
         nome: nome,
         id_tipo_membro: idTipoMembro,
+        id_foto: idFoto,
         status: status,
         observacao: observacao,
         updated_at: new Date(),
