@@ -21,7 +21,7 @@ const server = createHTTPServer({
 const port = process.env.PORT;
 async function startServer() {
   if (!port) {
-    console.log("por não encontrada");
+    console.log("porta não encontrada");
     return;
   }
 

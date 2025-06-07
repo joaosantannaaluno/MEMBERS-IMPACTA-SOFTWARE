@@ -19,10 +19,16 @@ const server = createHTTPServer({
 });
 
 
-const port = 3000;
+const port = process.env.PORT;
 async function startServer() {
-    server.listen(port);
+    if (!port) {
+        console.log("porta não encontrada");
+        return;
+    }
+
+    server.listen(parseInt(port, 10));
     console.log(`Servidor rodando em http://localhost:${port}`);
 }
+
 
 startServer();

@@ -2,7 +2,6 @@
   <q-page class="column q-pa-md">
     <div class="full-width flex row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 q-pa-sm">
-        {{ dados }}<br />{{ tipoMembroDash }}
         <circle-chart-card
           key="chart1"
           class="full-width"
@@ -38,16 +37,22 @@ const tipoMembroDash = computed<{
       values: [],
     }
   return dados.value.data.reduce(
-    (acc, curr) => {
-      acc.labels.push(curr.tipo)
-      acc.values.push(curr.qtd)
+    (
+      acc: { labels: string[]; values: number[] },
+      curr: {
+        qtd?: number
+        tipo?: string
+      }
+    ) => {
+      acc.labels.push(curr.tipo || '')
+      acc.values.push(curr.qtd || 0)
 
       return acc
     },
     {
-      labels: [],
-      values: [],
-    },
+      labels: [] as string[],
+      values: [] as number[],
+    }
   )
 })
 
