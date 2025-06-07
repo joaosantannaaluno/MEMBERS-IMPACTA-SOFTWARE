@@ -8,11 +8,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
-    "paths": {
-      "@main-db": [
-        "../../../../../../packages/main-db"
-      ]
-    },
     "allowJs": true,
     "resolveJsonModule": true,
     "declaration": true,

@@ -1,5 +1,5 @@
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
-import type { AppRouterType, DashboardsAPIOutputs } from '@manager-members/dashboards'
+import type { AppRouterType } from '@manager-members/dashboards'
 
 export default () => {
   return createTRPCProxyClient<AppRouterType>({

@@ -8,11 +8,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
-    "paths": {
-      "@main-db": [
-        "../../../../../../packages/main-db"
-      ]
-    },
     "allowJs": true,
     "resolveJsonModule": true,
     "declaration": true,
@@ -21,11 +16,6 @@
     "incremental": true,
     "noEmitOnError": true
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
