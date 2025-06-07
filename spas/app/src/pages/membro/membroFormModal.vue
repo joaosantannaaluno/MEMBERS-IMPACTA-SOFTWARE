@@ -85,6 +85,7 @@ const dados = ref<NonNullable<CrudsAPIOutputs['membros']['get']>>({
   id_foto: '',
   id_tipo_membro: '',
   nome: '',
+  foto: '',
   observacao: '',
   created_at: null,
   created_by: null,
@@ -114,6 +115,7 @@ const refresh = async () => {
 
       if (resultado) {
         dados.value = resultado
+        urlFilePic.value = resultado.foto
       } else {
         throw new Error('Tipo Membro não encontrado')
       }
@@ -147,6 +149,7 @@ const adicionar = async () => {
       idTipoMembro: dados.value.id_tipo_membro || '',
       nome: dados.value.nome || '',
       status: dados.value?.status || 'active',
+      idFoto: dados.value?.id_foto || '',
       observacao: dados.value?.observacao || null,
     })
 
@@ -187,6 +190,7 @@ const salvar = async () => {
       idTipoMembro: dados.value.id_tipo_membro || '',
       nome: dados.value.nome || '',
       status: dados.value?.status || 'active',
+      idFoto: dados.value?.id_foto || '',
       observacao: dados.value?.observacao || null,
     })
 
